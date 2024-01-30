@@ -3,10 +3,10 @@ provider "aws" {
 }
 
 resource "aws_instance" "example" {
-  ami = "ami-0fb653ca2d3203ac1"
+  ami           = "ami-0fb653ca2d3203ac1"
   instance_type = "t2.micro"
 
-  user_data  = <<-EOF
+  user_data = <<-EOF
               #!/bin/bash
               echo "Hello, World" > index.html
               nohup busybox httpd -f -p ${var.server_port} &
@@ -34,14 +34,14 @@ resource "aws_security_group" "instance" {
 
 variable "my_first_variable" {
   description = "I'm defining my first var"
-  type = number
-  default = 8
+  type        = number
+  default     = 8
 }
 
 variable "server_port" {
   description = "The port the server will use for HTTP requests"
   type        = number
-  default = 8080
+  default     = 8080
 }
 
 output "public_ip" {
