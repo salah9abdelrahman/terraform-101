@@ -1,0 +1,4 @@
+- terrafrom init
+- terraform plan
+- terraform apply
+- terraform destroy
