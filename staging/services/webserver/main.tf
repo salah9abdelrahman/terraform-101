@@ -6,7 +6,7 @@ provider "aws" {
 terraform {
   backend "s3" {
     bucket         = "my-terraform-101-state"
-    key            = "staging/webserver/terraform.tfstate"
+    key            = "stage/services/webserver-cluster/terraform.tfstate"
     region         = "us-east-2"
     profile        = "personal"
     dynamodb_table = "terraform-101-locks"
