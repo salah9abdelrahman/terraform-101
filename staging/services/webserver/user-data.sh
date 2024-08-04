@@ -1,4 +1,8 @@
 #!/bin/bash
+yum update -y
+yum install -y httpd
+systemctl start httpd
+systemctl enable httpd
 cat > index.html <<EOF
 <h1>Hello, World</h1>
 <p>DB address: ${db_address}</p>
