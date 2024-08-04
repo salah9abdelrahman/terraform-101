@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "us-east-2"
+  region  = "us-east-2"
   profile = "personal"
 }
 
@@ -22,6 +22,8 @@ resource "aws_instance" "example" {
   user_data = <<-EOF
               #!/bin/bash
               echo "Hello, World" > index.html
+              echo "${data.terraform_remote_state.db.outputs.address}" >> index.html
+              echo "${data.terraform_remote_state.db.outputs.port}" >> index.html
               nohup busybox httpd -f -p ${var.server_port} &
               EOF
 
@@ -71,4 +73,16 @@ resource "aws_autoscaling_group" "example" {
 
   availability_zones = ["us-east-2a"]
 
+}
+
+
+data "terraform_remote_state" "db" {
+  backend = "s3"
+
+  config = {
+    bucket  = "my-terraform-101-state"
+    key     = "stage/data-stores/mysql/terraform.tfstate"
+    region  = "us-east-2"
+    profile = "personal"
+  }
 }
