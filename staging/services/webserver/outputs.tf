@@ -1,4 +1,4 @@
-output "public_ip" {
-  value       = aws_instance.example.public_ip
-  description = "The public IP address of the web server"
+output "alb_dns_name" {
+  value       = module.webserver.alb_dns_name
+  description = "DNS of web server LB"
 }
